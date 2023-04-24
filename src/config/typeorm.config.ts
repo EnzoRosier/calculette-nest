@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Success } from 'src/success/success.entity';
+import { Fail } from 'src/fail/fail.entity';
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mysql',
   host: 'localhost',
@@ -7,5 +8,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'junia_user',
   password: 'junia_user',
   database: 'calculette',
-  entities: [Success],
+  entities: [Success, Fail],
 };
