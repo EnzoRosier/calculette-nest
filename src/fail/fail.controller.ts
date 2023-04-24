@@ -14,19 +14,25 @@ import { Fail } from './fail.entity';
 
 @Controller('fail')
 export class FailController {
-  constructor(private successService: FailService) {}
+  constructor(private failService: FailService) {}
 
   @Post()
   createFail(
     @Body('id') id: number,
     @Body('timeTakenMs') created_at: Date,
   ): Promise<Fail> {
-    return this.successService.createSuccess(id, created_at);
+    return this.failService.createSuccess(id, created_at);
   }
 
   @Get()
   getAllfail() {
     console.log('On cherche tout les fails');
-    return this.successService.getAll();
+    return this.failService.getAll();
+  }
+
+  @Get(':last')
+  getLastFail() {
+    console.log('On cherche le dernier fail');
+    return this.failService.getLast();
   }
 }

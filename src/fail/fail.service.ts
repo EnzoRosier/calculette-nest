@@ -26,4 +26,15 @@ export class FailService {
     console.log('res is :', res);
     return res;
   }
+
+  async getLast() {
+    const res = await this.failRepository.find({
+      take: 1,
+      order: {
+        id: 'DESC',
+      },
+    });
+    console.log('res is :', res);
+    return res;
+  }
 }
