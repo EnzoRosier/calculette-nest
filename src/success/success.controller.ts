@@ -24,4 +24,10 @@ export class SuccessController {
     console.log(timeTakenMs);
     return this.successService.createSuccess(id, timeTakenMs);
   }
+
+  @Get()
+  getAllsuccess() {
+    console.log('On cherche tout les success');
+    return this.successService.getAll();
+  }
 }

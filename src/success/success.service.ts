@@ -19,4 +19,10 @@ export class SuccessService {
     success.save();
     return success;
   }
+
+  async getAll() {
+    const res = await this.successRepository.find();
+    console.log('res is :', res);
+    return res;
+  }
 }
