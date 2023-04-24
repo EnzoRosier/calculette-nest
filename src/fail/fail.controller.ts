@@ -17,11 +17,10 @@ export class FailController {
   constructor(private failService: FailService) {}
 
   @Post()
-  createFail(
-    @Body('id') id: number,
-    @Body('timeTakenMs') created_at: Date,
-  ): Promise<Fail> {
-    return this.failService.createSuccess(id, created_at);
+  createFail(): Promise<Fail> {
+    const res = this.failService.getLastRecent();
+    this.failService.createFail();
+    return res;
   }
 
   @Get()
@@ -31,8 +30,8 @@ export class FailController {
   }
 
   @Get(':last')
-  getLastFail() {
+  getLastRecentFails() {
     console.log('On cherche le dernier fail');
-    return this.failService.getLast();
+    return this.failService.getLastRecent();
   }
 }

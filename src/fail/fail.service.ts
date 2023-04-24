@@ -11,13 +11,10 @@ export class FailService {
     private failRepository: Repository<Fail>,
   ) {}
 
-  async createSuccess(id: number, created_at: Date): Promise<Fail> {
+  async createFail(): Promise<Fail> {
     const fail = new Fail();
-    fail.id = id;
-    fail.created_at = created_at;
     console.log(fail);
     await fail.save();
-    fail.save();
     return fail;
   }
 
@@ -27,14 +24,14 @@ export class FailService {
     return res;
   }
 
-  async getLast() {
+  async getLastRecent() {
     const res = await this.failRepository.find({
       take: 1,
       order: {
         id: 'DESC',
       },
     });
-    console.log('res is :', res);
-    return res;
+    console.log('res is :', res[0]);
+    return res[0];
   }
 }
