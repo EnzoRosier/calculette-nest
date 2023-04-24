@@ -17,8 +17,8 @@ export class FailController {
   constructor(private failService: FailService) {}
 
   @Post()
-  createFail(): Promise<Fail> {
-    const res = this.failService.getLastRecent();
+  createFail(): Promise<(Fail | number)[]> {
+    const res = this.failService.getReport();
     this.failService.createFail();
     return res;
   }
@@ -30,8 +30,8 @@ export class FailController {
   }
 
   @Get(':last')
-  getLastRecentFails() {
+  getReportFail() {
     console.log('On cherche le dernier fail');
-    return this.failService.getLastRecent();
+    return this.failService.getReport();
   }
 }

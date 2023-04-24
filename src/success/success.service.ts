@@ -20,9 +20,17 @@ export class SuccessService {
     return success;
   }
 
-  async getAll() {
+  async getReport(time: number) {
     const res = await this.successRepository.find();
-    console.log('res is :', res);
-    return res;
+    let moy = 0;
+    let pourc = 0;
+    res.forEach((val) => {
+      moy = moy + val.timeTakenMs;
+      if (val.timeTakenMs < time) {
+        pourc = pourc + 1;
+        console.log(pourc);
+      }
+    });
+    return [moy / res.length, (pourc * 100) / res.length];
   }
 }

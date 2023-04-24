@@ -20,14 +20,10 @@ export class SuccessController {
   createSuccess(
     @Body('id') id: number,
     @Body('timeTakenMs') timeTakenMs: number,
-  ): Promise<Success> {
+  ): Promise<number[]> {
     console.log(timeTakenMs);
-    return this.successService.createSuccess(id, timeTakenMs);
-  }
-
-  @Get()
-  getAllsuccess() {
-    console.log('On cherche tout les success');
-    return this.successService.getAll();
+    this.successService.createSuccess(id, timeTakenMs);
+    const res = this.successService.getReport(timeTakenMs);
+    return res;
   }
 }
