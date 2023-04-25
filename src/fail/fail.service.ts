@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { Fail } from './fail.entity';
-import { time } from 'console';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -11,6 +10,7 @@ export class FailService {
     private failRepository: Repository<Fail>,
   ) {}
 
+  //Cree un fail dans la DB
   async createFail(): Promise<Fail> {
     const fail = new Fail();
     console.log(fail);
@@ -18,12 +18,14 @@ export class FailService {
     return fail;
   }
 
+  //Renvoie tout les fails de la DB
   async getAll() {
     const res = await this.failRepository.find();
     console.log('res is :', res);
     return res;
   }
 
+  //Renvoie un rapport sur les erreurs
   async getReport() {
     const res = await this.failRepository.find();
     console.log('res is :', res[res.length - 1]);

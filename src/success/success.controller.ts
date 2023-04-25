@@ -16,7 +16,17 @@ import { Success } from './success.entity';
 export class SuccessController {
   constructor(private successService: SuccessService) {}
 
+  //Cree un succe et renvoie un rapport
   @Post()
+  @Header('Access-Control-Allow-Origin', '*')
+  @Header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Accept, Origin, Authorization',
+  )
+  @Header(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+  )
   createSuccess(
     @Body('id') id: number,
     @Body('timeTakenMs') timeTakenMs: number,
